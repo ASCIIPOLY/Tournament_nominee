@@ -1,7 +1,15 @@
-import '../styles/globals.css'
+import '../styles/App.scss'
+import CardContextProvider from  '../context/CardContext' ;
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+    
+      return (
+        <CardContextProvider>
+          <Component {...pageProps} />
+        </CardContextProvider>
+      ) 
+    
+      
 }
 
 export default MyApp
