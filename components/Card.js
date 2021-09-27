@@ -1,5 +1,8 @@
 import { CardContext } from "../context/CardContext";
 import { useContext } from "react";
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleDown, faAngleUp} from '@fortawesome/free-solid-svg-icons';
 
 const Card = ({cards, currentCards}) => {
 
@@ -29,8 +32,8 @@ const Card = ({cards, currentCards}) => {
                     </div>
                     <div className="btn-container">
                         <div className="btn__group-container">
-                            <button className="btn-down" onClick={() => downVote(card.id)}><i className="fas fa-angle-down"></i>DOWN</button>
-                            <button className="btn-up" onClick={() => upVote(card.id)}><i className="fas fa-angle-up"></i>UP</button>
+                            <button className="btn_down" onClick={() => downVote(card.id)}><FontAwesomeIcon icon={faAngleDown} className="angle_down"/>DOWN</button>
+                            <button className="btn_up" onClick={() => upVote(card.id)}><FontAwesomeIcon icon={faAngleUp} className="angle_up"/>UP</button>
                         </div>
                         <button className="delete" onClick={() => {deleteOpenModal(card.id,card.title) }}>DELETE</button>
                     </div>

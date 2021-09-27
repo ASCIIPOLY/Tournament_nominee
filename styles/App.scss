@@ -310,6 +310,8 @@ flex-direction: column;
                 margin-top: 10px;
 
                 .btn__group-container {
+                    display: flex;
+                    
                     button{
                         border: none;
                         padding: 0 5px;
@@ -317,15 +319,32 @@ flex-direction: column;
                         width: 70px;
                         border: 1px solid #00bbf0;
                         cursor: pointer;
+
                     }
 
-                    .btn-down{
-                        color: #00bbf0; 
+                    .btn_down{
+                        color: #00bbf0;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .angle_down{
+                            width: 15px;
+                            margin-right: 5px;
+                        } 
                     }
 
-                    .btn-up{
+                    .btn_up{
                         background-color: #00bbf0;
                         color: #fcfefe;
+                        height: 20px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center; 
+                        .angle_up{
+                            width: 15px;
+                            margin-right: 5px;
+                        } 
                     }
                 }
 
