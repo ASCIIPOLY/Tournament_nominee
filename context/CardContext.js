@@ -19,38 +19,53 @@ const CardContextProvider = (props) => {
     ])
     
 
-
-   
-
-    const [showAlert, setShowAlert] = useState({visibility:"hidden"});
-    
-    
-    const handleShowAlert = () => {
-        setShowAlert({visibility:"visible"});
-        setTimeout(()=> {
-            setShowAlert({visibility:"hidden"});
-        }, 2000);
-    };
-
-
-
     useEffect(() => {
 
          const cards = localStorage.getItem('cards')
-         setCards(JSON.parse(cards))
+         if (cards !== null){
+            setCards(JSON.parse(cards))
+         }
+            
      }, [])
 
     useEffect(() => {
 
          localStorage.setItem('cards', JSON.stringify(cards))
+
     })
+
+    const GettingMonth = function() {
+        var month = new Date().getMonth() + 1;
+        return month < 10 ? `${0}${month}` : month; // ('' + month) for string result
+      }
+
+    const GettingDates = function() {
+        var dates = new Date().getDate();
+        return dates < 10 ? `${0}${dates}` : dates; 
+      }
+
+    const GettingHours = function() {
+        var hours = new Date().getHours() ;
+        return hours < 10 ? `${0}${hours}` : hours; // ('' + month) for string result
+      }
+    
+    const GettingMinutes = function() {
+        var minutes = new Date().getMinutes() ;
+        return minutes < 10 ? `${0}${minutes}` : minutes; // ('' + month) for string result
+      }
+
+    
+    const GettingSeconds = function() {
+        var seconds = new Date().getSeconds() ;
+        return seconds < 10 ? `${0}${seconds}` : seconds; // ('' + month) for string result
+      }
 
 
     var lastUpdated = new Date().getDate()  + "." + (new Date().getMonth()+1) + "." + new Date().getFullYear() + " " +
     new Date().getHours() + ":" + new Date().getMinutes();
 
-
-    var lastUpdatedNumber = `${new Date().getFullYear()}${(new Date().getMonth()+1)}${new Date().getDate()}${new Date().getHours()}${new Date().getMinutes()}${new Date().getSeconds()}`;
+    
+    var lastUpdatedNumber = `${new Date().getFullYear()}${GettingMonth()}${GettingDates()}${GettingHours()}${GettingMinutes()}${GettingSeconds()}`;
     
 
     const upVote = (id) => {
@@ -60,6 +75,7 @@ const CardContextProvider = (props) => {
         foundedCard.lastUpdated = lastUpdated ;
         foundedCard.lastUpdatedNumber = lastUpdatedNumber;
         setCards(cards.map((card) => (card.id === id ? foundedCard : card)))
+        console.log(lastUpdatedNumber)
         sortByMostVote()
     }
 
@@ -93,6 +109,16 @@ const CardContextProvider = (props) => {
 
     const handleClose = () => setDeletedCardId({...deletedCardId,modal:false})
 
+    
+    const [showAlert, setShowAlert] = useState({visibility:"hidden"});
+
+    const handleShowAlert = () => {
+        setShowAlert({visibility:"visible"});
+        setTimeout(()=> {
+            setShowAlert({visibility:"hidden"});
+        }, 2000);
+    };
+
 
 
     const deleteCard = () => {
@@ -101,7 +127,6 @@ const CardContextProvider = (props) => {
     }
 
     
-
 
     const sortByMostVote = () => {
         const sortedCards = cards.sort((a,b)=> {
@@ -115,6 +140,7 @@ const CardContextProvider = (props) => {
         setCards(sortedCards.map((sortedCard) => sortedCard))
         console.log(cards)
     }
+
 
     const sortByLessVote = () => {
         const sortedCards = cards.sort((a,b)=> {

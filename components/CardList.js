@@ -15,7 +15,7 @@ const CardList = () => {
   const indexOfLastCard = currentPage * cardsPerPage ;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage ;
   const currentCards = cards.slice(indexOfFirstCard,indexOfLastCard) ;
-  const totalPagesNum = Math.ceil(cards.length / cardsPerPage) ;
+  const totalPagesNum = Math.ceil(cards.length / cardsPerPage) ; //rounds up the division remainder
 
   return (
     <div className="container">
